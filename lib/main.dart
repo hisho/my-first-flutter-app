@@ -28,39 +28,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String name = '';
 
-  void _incrementCounter() {
+  void _incrementCounter(String text) {
     setState(() {
-      _counter++;
+      name = text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: Container(
+          padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
+          width: double.infinity,
+          child: Column(
+            children: [
+              const TextField(
+                decoration: InputDecoration(hintText: 'type your name'),
+                autofocus: true,
+              ),
+              TextField(
+                decoration: const InputDecoration(hintText: 'type your name'),
+                autofocus: true,
+                onChanged: _incrementCounter,
+              ),
+              Text(name)
+            ],
+          ),
+        ));
   }
 }
